@@ -1,0 +1,2 @@
+# SPA-host fallback only. A unified edge must route /api/* to Express before this rule.
+/* /index.html 200

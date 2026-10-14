@@ -1,0 +1,36 @@
+.admin-invitation-page { display: grid; min-height: 100dvh; padding: clamp(var(--space-4), 5vw, var(--space-10)); place-items: center; background: var(--color-ivory); }
+.admin-invitation-panel, .admin-invitation-state { width: min(100%, 560px); padding: clamp(var(--space-5), 6vw, var(--space-8)); border: 1px solid var(--color-border); border-radius: var(--radius-xl); background: var(--color-white); box-shadow: var(--shadow-md); }
+.admin-invitation-brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6); }
+.admin-invitation-brand > span { display: grid; width: 42px; height: 42px; place-items: center; border-radius: var(--radius-md); background: var(--color-deep-blue); color: var(--color-white); font-weight: var(--weight-bold); }
+.admin-invitation-brand > div { display: grid; }
+.admin-invitation-brand small, .admin-invitation-panel header > p:last-child, .admin-invitation-hotel span, .admin-invitation-hotel small { color: var(--color-text-muted); }
+.admin-invitation-panel h1, .admin-invitation-state h1 { margin-bottom: var(--space-2); color: var(--color-espresso); }
+.admin-invitation-hotel { display: flex; align-items: flex-start; gap: var(--space-3); margin: var(--space-5) 0; padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-ivory); }
+.admin-invitation-hotel > svg { flex: 0 0 auto; margin-top: 2px; color: var(--color-primary-blue); }
+.admin-invitation-hotel > div { display: grid; min-width: 0; gap: 2px; }
+.admin-invitation-hotel strong, .admin-invitation-hotel small { overflow-wrap: anywhere; }
+.admin-invitation-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin: 0 0 var(--space-5); }
+.admin-invitation-details > div { min-width: 0; }
+.admin-invitation-details dt { color: var(--color-text-muted); font-size: var(--text-sm); }
+.admin-invitation-details dd { margin: var(--space-1) 0 0; color: var(--color-espresso); overflow-wrap: anywhere; }
+.admin-invitation-plans { display: grid; gap: var(--space-3); margin-bottom: var(--space-5); }
+.admin-invitation-plans h2 { margin: 0; font-size: var(--text-lg); }
+.admin-invitation-plans p { margin: var(--space-1) 0 0; color: var(--color-text-muted); }
+.admin-invitation-plan-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.admin-invitation-plan-grid button { display: grid; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-white); color: var(--color-text); text-align: left; cursor: pointer; }
+.admin-invitation-plan-grid button:hover { border-color: var(--color-primary-blue); }
+.admin-invitation-plan-grid button:focus-visible { outline: 3px solid var(--color-primary-blue); outline-offset: 2px; }
+.admin-invitation-plan-grid button.is-selected { border-color: var(--color-primary-blue); background: var(--color-sky); }
+.admin-invitation-plan-grid ul { margin: 0; padding-left: var(--space-4); color: var(--color-text-muted); font-size: var(--text-sm); }
+.admin-invitation-plan-grid span { color: var(--color-primary-blue); font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+.admin-invitation-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.admin-invitation-message, .admin-invitation-submit { grid-column: 1 / -1; }
+.admin-invitation-message { margin: 0; padding: var(--space-3); border-radius: var(--radius-md); font-size: var(--text-sm); }
+.admin-invitation-message--error { background: var(--color-error-soft); color: var(--color-error); }
+.admin-invitation-state { display: grid; justify-items: center; text-align: center; }
+.admin-invitation-state > svg { margin-bottom: var(--space-3); color: var(--color-primary-blue); }
+.admin-invitation-state p { max-width: 42ch; color: var(--color-text-muted); line-height: var(--leading-normal); }
+.admin-invitation-spinner { width: 32px; height: 32px; margin-bottom: var(--space-4); border: 3px solid var(--color-border); border-top-color: var(--color-primary-blue); border-radius: 50%; animation: admin-invitation-spin 700ms linear infinite; }
+@keyframes admin-invitation-spin { to { transform: rotate(360deg); } }
+@media (max-width: 560px) { .admin-invitation-page { padding: var(--space-3); }.admin-invitation-panel, .admin-invitation-state { padding: var(--space-5); }.admin-invitation-details, .admin-invitation-form, .admin-invitation-plan-grid { grid-template-columns: 1fr; }.admin-invitation-message, .admin-invitation-submit { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .admin-invitation-spinner { animation: none; } }

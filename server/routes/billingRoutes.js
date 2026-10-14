@@ -1,0 +1,21 @@
+import { Router } from "express";
+import { ROLE_KEYS } from "../config/roles.js";
+import { requireAuthentication } from "../middleware/authentication.js";
+import { requireHotelScope } from "../middleware/hotelScope.js";
+import { authorizeRoleKeys } from "../middleware/authorizeRoles.js";
+import { requireTrustedOrigin } from "../middleware/trustedOrigin.js";
+import * as controller from "../controllers/billingController.js";
+
+export const billingRouter = Router({ mergeParams: true });
+const access = [requireAuthentication, controller.validateBillingIds, requireHotelScope, authorizeRoleKeys(ROLE_KEYS.HOTEL_ADMIN, ROLE_KEYS.MANAGER, ROLE_KEYS.RECEPTION)];
+const administrators = authorizeRoleKeys(ROLE_KEYS.HOTEL_ADMIN, ROLE_KEYS.MANAGER);
+billingRouter.get("/billing-options", ...access, controller.options);
+billingRouter.get("/bills", ...access, controller.list);
+billingRouter.get("/bills/:billId", ...access, controller.detail);
+billingRouter.get("/bills/:billId/payments", ...access, controller.payments);
+billingRouter.post("/room-bookings/:bookingId/bill", ...access, requireTrustedOrigin, controller.createRoom);
+billingRouter.post("/orders/:orderId/bill", ...access, administrators, requireTrustedOrigin, controller.createCaptain);
+billingRouter.post("/bills/:billId/recalculate", ...access, requireTrustedOrigin, controller.recalculate);
+billingRouter.post("/bills/:billId/finalize", ...access, requireTrustedOrigin, controller.finalize);
+billingRouter.post("/bills/:billId/void", ...access, administrators, requireTrustedOrigin, controller.voidBill);
+billingRouter.post("/bills/:billId/payments", ...access, requireTrustedOrigin, controller.pay);
